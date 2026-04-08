@@ -1,0 +1,161 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Hero from '../components/Hero.astro';
+import SectionBlock from '../components/SectionBlock.astro';
+import PhotoCard from '../components/PhotoCard.astro';
+import QuoteBlock from '../components/QuoteBlock.astro';
+import VideoCard from '../components/VideoCard.astro';
+import PuppyCard from '../components/PuppyCard.astro';
+import Divider from '../components/Divider.astro';
+import Footer from '../components/Footer.astro';
+import { puppies } from '../data/puppies';
+
+const photo = (id: string) => `/photos/thumbs/${id}.webp`;
+
+const puppyPhotoMap: Record<string, string> = {
+  'Roxana': '122158024820719917',
+  'Lucas': '122158024856719917',
+  'Rosaline': '122158024904719917',
+  'Calla': '122158024946719917',
+  'Theo': '122158024994719917',
+  'Lillian': '122158025036719917',
+  'Leo': '122158025078719917',
+  'Samuel': '122158025126719917',
+};
+
+const navLinks = [
+  { label: 'Amy', href: '#amy' },
+  { label: 'Narození', href: '#narozeni' },
+  { label: 'Štěňata', href: '#stenata' },
+  { label: 'Rostou', href: '#rostou' },
+];
+---
+<BaseLayout description="Příběh vrhu ANIMA - od Amy k osmi malým mazlíkům. CHS Imbolg Harmony.">
+  <Nav links={navLinks} />
+
+  <Hero
+    title={`Příběh vrhu <em>ANIMA</em>`}
+    subtitle="Jak se z jedné tvrdohlavé beaglice stala máma osmi mazlíků."
+    badge="CHS IMBOLG HARMONY"
+    imageSrc="/images/amy-hero.jpeg"
+  />
+
+  <SectionBlock id="amy" label="Kde to všechno začalo" title="Amy" bg="snow">
+    <div class="story-grid">
+      <div class="story-photo">
+        <img src="/images/amy-portrait.jpeg" alt="Amy" class="rounded-photo" loading="lazy" />
+      </div>
+      <div class="story-text">
+        <p>Všechno začalo s ní. Amy přišla do života Markéty jako štěně plné energie a tvrdohlavosti. Z malé rebelky vyrostla fena, která září na výstavách, zvládá lovecké zkoušky a doma je tím nejlepším společníkem.</p>
+        <p>Český šampion krásy, aktivní šampionka, držitelka pracovních certifikátů. Ale tyhle tituly jsou jen papíry. To hlavní je charakter.</p>
+      </div>
+    </div>
+    <QuoteBlock text="Naše pouto s Amy vzniklo díky každodenní péči, hře a pozornosti. Jen s láskou a časem se vaše štěně opravdu propojí s vámi." author="Markéta" />
+    <div class="photo-row-3">
+      <PhotoCard src={photo('122147077724719917')} alt="Amy" caption="Diplom Aktivní šampion" />
+      <PhotoCard src={photo('122147975348719917')} alt="Amy v lese" caption="Les obejme po svém, tiše a opravdově." />
+      <PhotoCard src={photo('122146743188719917')} alt="Amy" caption="Tolik klidu, síly a elegance v jednom pohledu." />
+    </div>
+  </SectionBlock>
+
+  <Divider />
+
+  <SectionBlock label="Léto a podzim 2025" title="Cesta k mateřství" bg="white">
+    <p class="story-intro">Výstavy, lovecké zkoušky, parfém Eau de hovňajs z lesa. Amy žila naplno. A pak přišly poslední procházky jen ve dvou.</p>
+    <div class="photo-row-2">
+      <PhotoCard src={photo('122146300280719917')} alt="Amy po honitbě" caption="Amy zmožená po pracovním víkendu... usnula se svým divočákem." />
+      <PhotoCard src={photo('122147267774719917')} alt="Amy" caption="Miluji ji přesně takovou, jaká je." />
+    </div>
+    <VideoCard src="/videos/1612470723203387.mp4" date="Únor 2026" caption="Konečně jen my dvě. A brzy tyhle procházky nebudeme chodit samy... ale jako smečka." />
+  </SectionBlock>
+
+  <Divider />
+
+  <SectionBlock id="narozeni" label="6. března 2026" title="6. března. Osm." bg="snow">
+    <p class="story-intro">Čtyři holky, čtyři kluci. Vrh ANIMA - pojmenovaný podle duše.</p>
+    <div class="birth-photo">
+      <PhotoCard src={photo('122157915890719917')} alt="Novorozená štěňátka" date="6. března 2026" caption="Když vás na veterině ujišťují, že naráz je krmit nebude... ještě že jich je osm." />
+    </div>
+    <div class="photo-row-2">
+      <PhotoCard src={photo('122158091450719917')} alt="Štěňátka spí" />
+      <PhotoCard src={photo('122158090124719917')} alt="Rozdělení do dvojic" caption="Rozdělení do dvojic" />
+    </div>
+    <QuoteBlock text="Amy teď odpočívá, stará se o svá štěňátka a mezi kojením mě tahá ke skříni, kde ví, že jsou schované pamlsky." author="Markéta" />
+  </SectionBlock>
+
+  <Divider />
+
+  <SectionBlock id="stenata" label="Vrh A - ANIMA" title="Osm jmen, osm příběhů" bg="cream">
+    <p class="story-intro">Každé jméno nese význam. Každé štěně má svou povahu od prvního dne.</p>
+    <div class="puppies-grid">
+      {puppies.map(p => (
+        <PuppyCard puppy={p} photoSrc={photo(puppyPhotoMap[p.name])} />
+      ))}
+    </div>
+  </SectionBlock>
+
+  <Divider />
+
+  <SectionBlock id="rostou" label="Realita" title="1:44 ráno" bg="white">
+    <p class="story-intro">Tohle je ta část chovu, co na fotkách nevidíš.</p>
+    <VideoCard src="/videos/1624544248753355.mp4" caption="1:44 ráno, místo spaní noční mejdan na chodbě. A jo... možná je rozmazluji." />
+    <VideoCard src="/videos/972128145494335.mp4" date="13. března" caption="Leo včera poprvé ukázal svůj lví hlas. První postoj na nožičkách, první zvědavé šmírování." />
+    <div class="photo-row-3">
+      <PhotoCard src={photo('122158090292719917')} alt="Leo a Rosaline" caption="Leo a Rosaline" />
+      <PhotoCard src={photo('122158090208719917')} alt="Theo a Calla" caption="Theo a Calla" />
+      <PhotoCard src={photo('122158090598719917')} alt="Lucas a Roxana" caption="Lucas a Roxana" />
+    </div>
+    <QuoteBlock text="Pro někoho klid a pozorování z první řady, pro jiné poctivý trénink na vlastních nožičkách... někdo už ví, že není potřeba se přetrhnout." author="Markéta" />
+  </SectionBlock>
+
+  <Divider />
+
+  <SectionBlock label="Třetí týden" title="První kašička a první výlety" bg="snow">
+    <VideoCard src="/videos/881182611642606.mp4" caption="Dneska ráno první kašička. Amy tomu celou dobu tiše dohlížela. A Samuel? Ten na konci hlasitě připomněl, že mlíčko je jistota." />
+    <div class="photo-row-2">
+      <PhotoCard src={photo('122159551712719917')} alt="Štěňata" />
+      <PhotoCard src={photo('122159551754719917')} alt="Štěňata" />
+    </div>
+    <VideoCard src="/videos/1500009878201717.mp4" caption="Začátek nebyl jednoduchý... ale ony věděly, že k sobě patří." />
+  </SectionBlock>
+
+  <Divider />
+
+  <SectionBlock label="Čtvrtý týden" title="Hurá ven" bg="white">
+    <VideoCard src="/videos/1465583105362709.mp4" caption="Malí průzkumníci objevují svět. Někdo odvážnější, někdo opatrnější... naštěstí měli po boku svou maminku." />
+    <VideoCard src="/videos/1478844713727889.mp4" caption="Hurá, už i na krajíček do lesíčka!" />
+    <div class="photo-row-3">
+      <PhotoCard src={photo('122159709398719917')} alt="Leo" caption="Leo - Malý král" />
+      <PhotoCard src={photo('122158090874719917')} alt="Roxana" caption="Roxana - zůstává doma" />
+      <PhotoCard src={photo('122159709440719917')} alt="Samuel" caption="Samuel - naslouchá srdcem" />
+    </div>
+  </SectionBlock>
+
+  <Divider />
+
+  <SectionBlock label="A příběh pokračuje" bg="cream">
+    <VideoCard src="/videos/1989304375337174.mp4" caption="Rosaline a první návštěva." />
+    <div class="closing">
+      <p class="closing-text">A tenhle příběh zdaleka nekončí.</p>
+    </div>
+  </SectionBlock>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+  .story-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-bottom: 24px; }
+  @media (min-width: 640px) { .story-grid { grid-template-columns: 1fr 1.2fr; align-items: center; } }
+  .story-text p { font-size: 15px; line-height: 1.8; margin-bottom: 14px; color: var(--text); }
+  .story-intro { font-size: 15px; color: var(--text); line-height: 1.8; margin-bottom: 24px; max-width: 640px; }
+  .rounded-photo { width: 100%; aspect-ratio: 3/4; object-fit: cover; border-radius: var(--radius-md); box-shadow: var(--shadow-card); }
+  .photo-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 20px 0; }
+  .photo-row-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 20px 0; }
+  @media (max-width: 480px) { .photo-row-3 { grid-template-columns: 1fr 1fr; } .photo-row-3 > :last-child { grid-column: 1 / -1; } }
+  .birth-photo { margin: 20px 0; }
+  .puppies-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin: 20px 0; }
+  @media (min-width: 640px) { .puppies-grid { grid-template-columns: repeat(4, 1fr); } }
+  .closing { text-align: center; }
+  .closing-text { font-size: 18px; font-style: italic; color: var(--brown); margin-bottom: 24px; line-height: 1.6; }
+</style>

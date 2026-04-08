@@ -1,0 +1,51 @@
+---
+interface Props {
+  src: string;
+  alt?: string;
+  date?: string;
+  caption?: string;
+}
+const { src, alt = '', date, caption } = Astro.props;
+---
+<div class="photo-card">
+  <img src={src} alt={alt} loading="lazy" decoding="async" class="photo-card-img" />
+  {(date || caption) && (
+    <div class="photo-card-body">
+      {date && <span class="photo-date">{date}</span>}
+      {caption && <p class="photo-caption">{caption}</p>}
+    </div>
+  )}
+</div>
+
+<style>
+  .photo-card {
+    background: #fff;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+    transition: box-shadow var(--transition), transform var(--transition);
+  }
+  .photo-card:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-2px);
+  }
+  .photo-card-img {
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+  }
+  .photo-card-body { padding: 14px 16px; }
+  .photo-date {
+    font-size: 10px;
+    color: var(--gold);
+    font-weight: bold;
+    display: block;
+    margin-bottom: 4px;
+  }
+  .photo-caption {
+    font-size: 13px;
+    color: var(--text);
+    font-style: italic;
+    line-height: 1.55;
+  }
+</style>

@@ -1,0 +1,67 @@
+---
+interface Props {
+  title: string;
+  subtitle?: string;
+  badge?: string;
+  imageSrc?: string;
+}
+const { title, subtitle, badge, imageSrc } = Astro.props;
+---
+<section class="hero" style={imageSrc ? `--hero-bg: url('${imageSrc}')` : ''}>
+  {badge && <div class="hero-badge">{badge}</div>}
+  <h1 set:html={title} />
+  {subtitle && <p class="hero-sub">{subtitle}</p>}
+  <div class="hero-scroll" aria-hidden="true">&#8595;</div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 75vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 40px 24px;
+    overflow: hidden;
+    background: linear-gradient(to top, rgba(42,31,20,0.92), rgba(42,31,20,0.35)),
+                var(--hero-bg, linear-gradient(135deg, #5A3E2B, #8B6914)) center/cover no-repeat;
+  }
+  .hero-badge {
+    font-size: 10px;
+    letter-spacing: 4px;
+    color: var(--cream);
+    opacity: 0.8;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+  }
+  .hero h1 {
+    font-size: clamp(28px, 6vw, 42px);
+    color: #fff;
+    font-weight: normal;
+    line-height: 1.2;
+  }
+  .hero h1 :global(em) {
+    color: var(--honey);
+    font-style: italic;
+  }
+  .hero-sub {
+    font-size: clamp(13px, 2.5vw, 16px);
+    color: var(--cream);
+    margin-top: 10px;
+    opacity: 0.9;
+    max-width: 520px;
+    line-height: 1.6;
+  }
+  .hero-scroll {
+    margin-top: 28px;
+    font-size: 24px;
+    text-align: center;
+    color: var(--honey);
+    opacity: 0.5;
+    animation: bounce 2.5s infinite;
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(8px); }
+  }
+</style>

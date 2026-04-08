@@ -1,0 +1,33 @@
+---
+import { site } from '../data/site';
+---
+<footer class="footer">
+  <div class="container">
+    <div class="footer-paw" aria-hidden="true">🐾</div>
+    <a href={site.facebook} target="_blank" rel="noopener" class="footer-fb">Sleduj nás na Facebooku</a>
+    <div class="footer-name">Imbolg Harmony</div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    text-align: center;
+    padding: 40px 20px 32px;
+    color: var(--text-light);
+    font-size: 13px;
+  }
+  .footer-paw { font-size: 22px; margin-bottom: 12px; }
+  .footer-fb {
+    display: inline-block;
+    padding: 10px 24px;
+    background: var(--brown);
+    color: var(--cream);
+    border-radius: 24px;
+    font-size: 13px;
+    text-decoration: none;
+    transition: background var(--transition);
+    margin-bottom: 16px;
+  }
+  .footer-fb:hover { background: var(--gold); }
+  .footer-name { font-size: 11px; letter-spacing: 3px; color: var(--text-light); opacity: 0.4; }
+</style>

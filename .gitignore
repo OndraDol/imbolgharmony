@@ -1,0 +1,6 @@
+site/node_modules/
+site/dist/
+site/.astro/
+.claude/
+.playwright-mcp/
+screenshots/

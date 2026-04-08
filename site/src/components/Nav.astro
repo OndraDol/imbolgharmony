@@ -1,0 +1,112 @@
+---
+interface Props {
+  links?: { label: string; href: string }[];
+}
+const { links = [
+  { label: 'O nás', href: '/#o-nas' },
+  { label: 'Služby', href: '/#sluzby' },
+  { label: 'Galerie', href: '/galerie' },
+  { label: 'Vrh ANIMA', href: '/vrh-anima' },
+  { label: 'Kontakt', href: '/#kontakt' },
+] } = Astro.props;
+---
+<nav class="nav" id="nav">
+  <a href="/" class="nav-logo">IMBOLG HARMONY</a>
+
+  <button class="nav-toggle" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+
+  <div class="nav-links">
+    {links.map(l => <a href={l.href}>{l.label}</a>)}
+  </div>
+</nav>
+
+<style>
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255,251,245,0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--cream);
+    padding: 12px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+  }
+  .nav-logo {
+    font-size: 11px;
+    letter-spacing: 3.5px;
+    color: var(--gold);
+    font-weight: normal;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  .nav-links {
+    display: flex;
+    gap: 20px;
+    font-size: 13px;
+  }
+  .nav-links a {
+    color: var(--text-light);
+    text-decoration: none;
+    transition: color var(--transition);
+    white-space: nowrap;
+  }
+  .nav-links a:hover { color: var(--honey); }
+
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+  }
+  .nav-toggle span {
+    display: block;
+    width: 20px;
+    height: 2px;
+    background: var(--brown);
+    transition: var(--transition);
+  }
+
+  @media (max-width: 640px) {
+    .nav-toggle { display: flex; }
+    .nav-links {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: rgba(255,251,245,0.98);
+      backdrop-filter: blur(12px);
+      flex-direction: column;
+      padding: 16px 20px;
+      gap: 12px;
+      border-bottom: 1px solid var(--cream);
+    }
+    .nav-links.open { display: flex; }
+  }
+</style>
+
+<script is:inline>
+  var toggle = document.querySelector('.nav-toggle');
+  var links = document.querySelector('.nav-links');
+  if (toggle && links) {
+    toggle.addEventListener('click', function() {
+      var open = links.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', String(!!open));
+    });
+    links.querySelectorAll('a').forEach(function(a) {
+      a.addEventListener('click', function() {
+        links.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+</script>

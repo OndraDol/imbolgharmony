@@ -1,0 +1,35 @@
+---
+interface Props {
+  id?: string;
+  label?: string;
+  title?: string;
+  bg?: 'snow' | 'cream' | 'white';
+}
+const { id, label, title, bg = 'snow' } = Astro.props;
+const bgMap = { snow: 'var(--snow)', cream: 'var(--cream)', white: '#fff' };
+---
+<section id={id} class="section reveal" style={`background: ${bgMap[bg]}`}>
+  <div class="container">
+    {label && <div class="section-label">{label}</div>}
+    {title && <h2 class="section-title">{title}</h2>}
+    <slot />
+  </div>
+</section>
+
+<style>
+  .section {
+    padding: 56px 0;
+  }
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .section-title {
+    font-size: clamp(22px, 4vw, 30px);
+    color: var(--brown);
+    margin-bottom: 20px;
+  }
+</style>

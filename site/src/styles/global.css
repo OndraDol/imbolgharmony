@@ -1,0 +1,101 @@
+/* === RESET === */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --brown: #5A3E2B;
+  --honey: #D4A574;
+  --cream: #F5E6D0;
+  --snow: #FFFBF5;
+  --rose: #E8A0B0;
+  --gold: #8B6914;
+  --text: #4A3520;
+  --text-light: #8a7a6a;
+  --blue-soft: #D5E5F0;
+  --pink-soft: #F0D8D8;
+
+  --font-main: 'Georgia', 'Palatino Linotype', 'Book Antiqua', serif;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 14px;
+  --shadow-card: 0 2px 16px rgba(90,62,43,0.06);
+  --shadow-hover: 0 4px 24px rgba(90,62,43,0.12);
+  --max-width: 860px;
+  --transition: 0.25s ease;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-main);
+  background: var(--snow);
+  color: var(--text);
+  line-height: 1.7;
+  font-size: 16px;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: var(--gold);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+a:hover { color: var(--honey); }
+
+h1, h2, h3, h4 {
+  font-weight: normal;
+  line-height: 1.3;
+}
+
+/* === UTILITY === */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+}
+
+/* === SCROLL REVEAL ANIMATION === */
+/* Only animate if JS has loaded (progressive enhancement) */
+.js-ready .reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.js-ready .reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* === SELECTION === */
+::selection {
+  background: var(--honey);
+  color: #fff;
+}
+
+/* === PHOTO CARD HOVER === */
+.photo-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.photo-card:hover {
+  transform: scale(1.03) translateY(-3px);
+  box-shadow: 0 8px 32px rgba(90,62,43,0.15);
+}
