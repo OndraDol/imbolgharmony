@@ -11,7 +11,7 @@ const { links = [
 ] } = Astro.props;
 ---
 <nav class="nav" id="nav">
-  <a href="/" class="nav-logo">IMBOLG HARMONY</a>
+  <a href={import.meta.env.BASE_URL} class="nav-logo">IMBOLG HARMONY</a>
 
   <button class="nav-toggle" aria-label="Menu" aria-expanded="false">
     <span></span><span></span><span></span>

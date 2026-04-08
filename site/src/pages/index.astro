@@ -11,7 +11,10 @@ import Divider from '../components/Divider.astro';
 import Footer from '../components/Footer.astro';
 import { puppies } from '../data/puppies';
 
-const photo = (id: string) => `/photos/thumbs/${id}.webp`;
+const base = import.meta.env.BASE_URL;
+const photo = (id: string) => `${base}photos/thumbs/${id}.webp`;
+const video = (name: string) => `${base}videos/${name}`;
+const img = (name: string) => `${base}images/${name}`;
 
 const puppyPhotoMap: Record<string, string> = {
   'Roxana': '122158024820719917',
@@ -38,13 +41,13 @@ const navLinks = [
     title={`Příběh vrhu <em>ANIMA</em>`}
     subtitle="Jak se z jedné tvrdohlavé beaglice stala máma osmi mazlíků."
     badge="CHS IMBOLG HARMONY"
-    imageSrc="/images/amy-hero.jpeg"
+    imageSrc={img('amy-hero.jpeg')}
   />
 
   <SectionBlock id="amy" label="Kde to všechno začalo" title="Amy" bg="snow">
     <div class="story-grid">
       <div class="story-photo">
-        <img src="/images/amy-portrait.jpeg" alt="Amy" class="rounded-photo" loading="lazy" />
+        <img src={img('amy-portrait.jpeg')} alt="Amy" class="rounded-photo" loading="lazy" />
       </div>
       <div class="story-text">
         <p>Všechno začalo s ní. Amy přišla do života Markéty jako štěně plné energie a tvrdohlavosti. Z malé rebelky vyrostla fena, která září na výstavách, zvládá lovecké zkoušky a doma je tím nejlepším společníkem.</p>
@@ -67,7 +70,7 @@ const navLinks = [
       <PhotoCard src={photo('122146300280719917')} alt="Amy po honitbě" caption="Amy zmožená po pracovním víkendu... usnula se svým divočákem." />
       <PhotoCard src={photo('122147267774719917')} alt="Amy" caption="Miluji ji přesně takovou, jaká je." />
     </div>
-    <VideoCard src="/videos/1612470723203387.mp4" date="Únor 2026" caption="Konečně jen my dvě. A brzy tyhle procházky nebudeme chodit samy... ale jako smečka." />
+    <VideoCard src={video('1612470723203387.mp4')} date="Únor 2026" caption="Konečně jen my dvě. A brzy tyhle procházky nebudeme chodit samy... ale jako smečka." />
   </SectionBlock>
 
   <Divider />
@@ -99,8 +102,8 @@ const navLinks = [
 
   <SectionBlock id="rostou" label="Realita" title="1:44 ráno" bg="white">
     <p class="story-intro">Tohle je ta část chovu, co na fotkách nevidíš.</p>
-    <VideoCard src="/videos/1624544248753355.mp4" caption="1:44 ráno, místo spaní noční mejdan na chodbě. A jo... možná je rozmazluji." />
-    <VideoCard src="/videos/972128145494335.mp4" date="13. března" caption="Leo včera poprvé ukázal svůj lví hlas. První postoj na nožičkách, první zvědavé šmírování." />
+    <VideoCard src={video('1624544248753355.mp4')} caption="1:44 ráno, místo spaní noční mejdan na chodbě. A jo... možná je rozmazluji." />
+    <VideoCard src={video('972128145494335.mp4')} date="13. března" caption="Leo včera poprvé ukázal svůj lví hlas. První postoj na nožičkách, první zvědavé šmírování." />
     <div class="photo-row-3">
       <PhotoCard src={photo('122158090292719917')} alt="Leo a Rosaline" caption="Leo a Rosaline" />
       <PhotoCard src={photo('122158090208719917')} alt="Theo a Calla" caption="Theo a Calla" />
@@ -112,19 +115,19 @@ const navLinks = [
   <Divider />
 
   <SectionBlock label="Třetí týden" title="První kašička a první výlety" bg="snow">
-    <VideoCard src="/videos/881182611642606.mp4" caption="Dneska ráno první kašička. Amy tomu celou dobu tiše dohlížela. A Samuel? Ten na konci hlasitě připomněl, že mlíčko je jistota." />
+    <VideoCard src={video('881182611642606.mp4')} caption="Dneska ráno první kašička. Amy tomu celou dobu tiše dohlížela. A Samuel? Ten na konci hlasitě připomněl, že mlíčko je jistota." />
     <div class="photo-row-2">
       <PhotoCard src={photo('122159551712719917')} alt="Štěňata" />
       <PhotoCard src={photo('122159551754719917')} alt="Štěňata" />
     </div>
-    <VideoCard src="/videos/1500009878201717.mp4" caption="Začátek nebyl jednoduchý... ale ony věděly, že k sobě patří." />
+    <VideoCard src={video('1500009878201717.mp4')} caption="Začátek nebyl jednoduchý... ale ony věděly, že k sobě patří." />
   </SectionBlock>
 
   <Divider />
 
   <SectionBlock label="Čtvrtý týden" title="Hurá ven" bg="white">
-    <VideoCard src="/videos/1465583105362709.mp4" caption="Malí průzkumníci objevují svět. Někdo odvážnější, někdo opatrnější... naštěstí měli po boku svou maminku." />
-    <VideoCard src="/videos/1478844713727889.mp4" caption="Hurá, už i na krajíček do lesíčka!" />
+    <VideoCard src={video('1465583105362709.mp4')} caption="Malí průzkumníci objevují svět. Někdo odvážnější, někdo opatrnější... naštěstí měli po boku svou maminku." />
+    <VideoCard src={video('1478844713727889.mp4')} caption="Hurá, už i na krajíček do lesíčka!" />
     <div class="photo-row-3">
       <PhotoCard src={photo('122159709398719917')} alt="Leo" caption="Leo - Malý král" />
       <PhotoCard src={photo('122158090874719917')} alt="Roxana" caption="Roxana - zůstává doma" />
@@ -135,7 +138,7 @@ const navLinks = [
   <Divider />
 
   <SectionBlock label="A příběh pokračuje" bg="cream">
-    <VideoCard src="/videos/1989304375337174.mp4" caption="Rosaline a první návštěva." />
+    <VideoCard src={video('1989304375337174.mp4')} caption="Rosaline a první návštěva." />
     <div class="closing">
       <p class="closing-text">A tenhle příběh zdaleka nekončí.</p>
     </div>
