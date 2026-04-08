@@ -34,13 +34,42 @@ const pageTitle = title ? `${title} | ${site.name}` : `${site.name} — ${site.t
   <slot />
 
   <script is:inline>
+    // Reveal animations
     document.documentElement.classList.add('js-ready');
-    var obs = new IntersectionObserver(function(entries) {
+    var revealObs = new IntersectionObserver(function(entries) {
       entries.forEach(function(e) {
-        if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+        if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); }
       });
     }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-    document.querySelectorAll('.reveal').forEach(function(el) { obs.observe(el); });
+    document.querySelectorAll('.reveal').forEach(function(el) { revealObs.observe(el); });
+
+    // Video autoplay on scroll (lazy load src, then play)
+    var videoObs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        var video = e.target.querySelector('video');
+        if (!video) return;
+        if (e.isIntersecting) {
+          if (!video.src && video.dataset.src) {
+            video.src = video.dataset.src;
+          }
+          video.play().catch(function(){});
+        } else {
+          video.pause();
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '100px 0px' });
+    document.querySelectorAll('.video-wrapper').forEach(function(w) { videoObs.observe(w); });
+
+    // Sound toggle
+    document.querySelectorAll('.sound-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var video = btn.parentElement.querySelector('video');
+        if (!video) return;
+        video.muted = !video.muted;
+        if (!video.muted) video.controls = true;
+        btn.textContent = video.muted ? '\uD83D\uDD07' : '\uD83D\uDD0A';
+      });
+    });
   </script>
 </body>
 </html>

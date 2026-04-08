@@ -11,7 +11,7 @@ const hasLocal = !!src;
 <div class="video-card">
   {hasLocal ? (
     <div class="video-wrapper">
-      <video src={src} muted playsinline loop preload="none" class="auto-video"></video>
+      <video data-src={src} muted playsinline loop preload="none" class="auto-video"></video>
       <button class="sound-btn" aria-label="Zapnout zvuk">🔇</button>
     </div>
   ) : fbLink ? (
@@ -114,26 +114,4 @@ const hasLocal = !!src;
   .photo-caption { font-size: 13px; color: var(--text); font-style: italic; line-height: 1.55; }
 </style>
 
-<script is:inline>
-  // Autoplay on scroll
-  const videoObserver = new IntersectionObserver(function(entries) {
-    entries.forEach(function(e) {
-      var video = e.target.querySelector('video');
-      if (!video) return;
-      if (e.isIntersecting) { video.play().catch(function(){}); }
-      else { video.pause(); }
-    });
-  }, { threshold: 0.3 });
-  document.querySelectorAll('.video-wrapper').forEach(function(w) { videoObserver.observe(w); });
-
-  // Sound toggle
-  document.querySelectorAll('.sound-btn').forEach(function(btn) {
-    btn.addEventListener('click', function() {
-      var video = btn.parentElement.querySelector('video');
-      if (!video) return;
-      video.muted = !video.muted;
-      if (!video.muted) video.controls = true;
-      btn.textContent = video.muted ? '🔇' : '🔊';
-    });
-  });
-</script>
+<!-- Video scripts are in BaseLayout -->

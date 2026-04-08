@@ -13,7 +13,7 @@ import { puppies } from '../data/puppies';
 
 const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 const photo = (id: string) => `${base}photos/thumbs/${id}.webp`;
-const video = (name: string) => `${base}videos/${name}`;
+const vid = (name: string) => `${base}videos/${name}`;
 const img = (name: string) => `${base}images/${name}`;
 
 const puppyPhotoMap: Record<string, string> = {
@@ -29,6 +29,7 @@ const puppyPhotoMap: Record<string, string> = {
 
 const navLinks = [
   { label: 'Amy', href: '#amy' },
+  { label: 'Smečka', href: '#smecka' },
   { label: 'Narození', href: '#narozeni' },
   { label: 'Štěňata', href: '#stenata' },
   { label: 'Rostou', href: '#rostou' },
@@ -44,6 +45,7 @@ const navLinks = [
     imageSrc={img('amy-hero.webp')}
   />
 
+  <!-- 1. AMY -->
   <SectionBlock id="amy" label="Kde to všechno začalo" title="Amy" bg="snow">
     <div class="story-grid">
       <div class="story-photo">
@@ -64,18 +66,27 @@ const navLinks = [
 
   <Divider />
 
-  <SectionBlock label="Léto a podzim 2025" title="Cesta k mateřství" bg="white">
-    <p class="story-intro">Výstavy, lovecké zkoušky, parfém Eau de hovňajs z lesa. Amy žila naplno. A pak přišly poslední procházky jen ve dvou.</p>
+  <!-- 2. CESTA - výstavy, zkoušky (léto-podzim 2025) -->
+  <SectionBlock label="2025" title="Cesta k mateřství" bg="white">
+    <p class="story-intro">Výstavy, lovecké zkoušky, parfém Eau de hovňajs z lesa. Amy žila naplno.</p>
     <div class="photo-row-2">
       <PhotoCard src={photo('122146300280719917')} alt="Amy po honitbě" caption="Amy zmožená po pracovním víkendu... usnula se svým divočákem." />
       <PhotoCard src={photo('122147267774719917')} alt="Amy" caption="Miluji ji přesně takovou, jaká je." />
     </div>
-    <VideoCard src={video('1612470723203387.mp4')} date="Únor 2026" caption="Konečně jen my dvě. A brzy tyhle procházky nebudeme chodit samy... ale jako smečka." />
   </SectionBlock>
 
   <Divider />
 
-  <SectionBlock id="narozeni" label="6. března 2026" title="6. března. Osm." bg="snow">
+  <!-- 3. TĚHOTENSTVÍ - poslední procházky ve dvou (únor 2026) -->
+  <SectionBlock id="smecka" label="Únor 2026" title="Brzy už nebudeme samy" bg="snow">
+    <p class="story-intro">Poslední společné procházky jen ve dvou. Amy i Markéta věděly, že se blíží něco velkého.</p>
+    <VideoCard fbLink="https://www.facebook.com/reel/1263464698667809/" caption="Konečně jen my dvě. Krátká procházka, trocha tréninku a zase si to spolu užít. A brzy už tyhle procházky nebudeme chodit samy... ale jako smečka." />
+  </SectionBlock>
+
+  <Divider />
+
+  <!-- 4. NAROZENÍ (6. března 2026) -->
+  <SectionBlock id="narozeni" label="6. března 2026" title="6. března. Osm." bg="white">
     <p class="story-intro">Čtyři holky, čtyři kluci. Vrh ANIMA - pojmenovaný podle duše.</p>
     <div class="birth-photo">
       <PhotoCard src={photo('122157915890719917')} alt="Novorozená štěňátka" date="6. března 2026" caption="Když vás na veterině ujišťují, že naráz je krmit nebude... ještě že jich je osm." />
@@ -89,6 +100,7 @@ const navLinks = [
 
   <Divider />
 
+  <!-- 5. PROFILY ŠTĚŇAT -->
   <SectionBlock id="stenata" label="Vrh A - ANIMA" title="Osm jmen, osm příběhů" bg="cream">
     <p class="story-intro">Každé jméno nese význam. Každé štěně má svou povahu od prvního dne.</p>
     <div class="puppies-grid">
@@ -100,34 +112,39 @@ const navLinks = [
 
   <Divider />
 
-  <SectionBlock id="rostou" label="Realita" title="1:44 ráno" bg="white">
-    <p class="story-intro">Tohle je ta část chovu, co na fotkách nevidíš.</p>
-    <VideoCard src={video('1624544248753355.mp4')} caption="1:44 ráno, místo spaní noční mejdan na chodbě. A jo... možná je rozmazluji." />
-    <VideoCard src={video('972128145494335.mp4')} date="13. března" caption="Leo včera poprvé ukázal svůj lví hlas. První postoj na nožičkách, první zvědavé šmírování." />
+  <!-- 6. PRVNÍ KROKY (druhý týden) -->
+  <SectionBlock id="rostou" label="Druhý týden" title="První kroky, první zvuky" bg="snow">
+    <VideoCard src={vid('972128145494335.mp4')} caption="Začíná to malými krůčky... trocha nejistoty, hodně mazlení a klidný hlas. Hlavní aktéři: Lucas, Rosaline a Samuel." />
     <div class="photo-row-3">
       <PhotoCard src={photo('122158090292719917')} alt="Leo a Rosaline" caption="Leo a Rosaline" />
       <PhotoCard src={photo('122158090208719917')} alt="Theo a Calla" caption="Theo a Calla" />
       <PhotoCard src={photo('122158090598719917')} alt="Lucas a Roxana" caption="Lucas a Roxana" />
     </div>
     <QuoteBlock text="Pro někoho klid a pozorování z první řady, pro jiné poctivý trénink na vlastních nožičkách... někdo už ví, že není potřeba se přetrhnout." author="Markéta" />
+    <div class="photo-row-2">
+      <PhotoCard src={photo('122158090340719917')} alt="Samuel a Lillian" caption="Samuel a Lillian" />
+      <PhotoCard src={photo('122158090736719917')} alt="Calla" caption="Calla" />
+    </div>
+    <VideoCard src={vid('1500009878201717.mp4')} caption="Začátek nebyl jednoduchý... ale ony věděly, že k sobě patří." />
   </SectionBlock>
 
   <Divider />
 
-  <SectionBlock label="Třetí týden" title="První kašička a první výlety" bg="snow">
-    <VideoCard src={video('881182611642606.mp4')} caption="Dneska ráno první kašička. Amy tomu celou dobu tiše dohlížela. A Samuel? Ten na konci hlasitě připomněl, že mlíčko je jistota." />
+  <!-- 7. TŘETÍ TÝDEN - kašička, jogurt -->
+  <SectionBlock label="Třetí týden" title="První kašička" bg="white">
+    <VideoCard src={vid('881182611642606.mp4')} caption="Dneska jsme poprvé přidali jogurt. Někdo musel mít misku zvlášť, protože by jinak snědl i porce svých sourozenců. A naše holčička se srdíčkem na čele? Ta se radši nají v klidu sama." />
     <div class="photo-row-2">
       <PhotoCard src={photo('122159551712719917')} alt="Štěňata" />
       <PhotoCard src={photo('122159551754719917')} alt="Štěňata" />
     </div>
-    <VideoCard src={video('1500009878201717.mp4')} caption="Začátek nebyl jednoduchý... ale ony věděly, že k sobě patří." />
   </SectionBlock>
 
   <Divider />
 
-  <SectionBlock label="Čtvrtý týden" title="Hurá ven" bg="white">
-    <VideoCard src={video('1465583105362709.mp4')} caption="Malí průzkumníci objevují svět. Někdo odvážnější, někdo opatrnější... naštěstí měli po boku svou maminku." />
-    <VideoCard src={video('1478844713727889.mp4')} caption="Hurá, už i na krajíček do lesíčka!" />
+  <!-- 8. ČTVRTÝ TÝDEN - ven! -->
+  <SectionBlock label="Čtvrtý týden" title="Hurá ven" bg="snow">
+    <VideoCard src={vid('1465583105362709.mp4')} caption="Malí průzkumníci objevují svět. Každý den o kousek odvážnější... a každý den o kousek víc sami sebou." />
+    <VideoCard src={vid('1478844713727889.mp4')} caption="Hurá, už i na krajíček do lesíčka!" />
     <div class="photo-row-3">
       <PhotoCard src={photo('122159709398719917')} alt="Leo" caption="Leo - Malý král" />
       <PhotoCard src={photo('122158090874719917')} alt="Roxana" caption="Roxana - zůstává doma" />
@@ -137,8 +154,18 @@ const navLinks = [
 
   <Divider />
 
+  <!-- 9. REALITA CHOVU (noční mejdan) -->
+  <SectionBlock label="Realita" title="1:44 ráno" bg="white">
+    <p class="story-intro">Tohle je ta část chovu, co na fotkách nevidíš.</p>
+    <VideoCard src={vid('1624544248753355.mp4')} caption="1:44 ráno, místo spaní noční mejdan na chodbě. A jo... možná je rozmazluji. Ale přesně tak to chci, protože tenhle čas je jen náš a jen na určitou dobu." />
+    <VideoCard src={vid('1612470723203387.mp4')} caption="Každý den si říkám, že už mě nic nepřekvapí... a pak začne další kolo." date="Březen 2026" />
+  </SectionBlock>
+
+  <Divider />
+
+  <!-- 10. PRVNÍ NÁVŠTĚVA + ZÁVĚR -->
   <SectionBlock label="A příběh pokračuje" bg="cream">
-    <VideoCard src={video('1989304375337174.mp4')} caption="Rosaline a první návštěva." />
+    <VideoCard src={vid('1989304375337174.mp4')} caption="Včera za námi přijeli první zájemci o štěňátko. Jejich srdce si získala Rosaline. Pavlínka s ní má v plánu canisterapii." />
     <div class="closing">
       <p class="closing-text">A tenhle příběh zdaleka nekončí.</p>
     </div>
