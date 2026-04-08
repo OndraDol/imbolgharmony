@@ -11,7 +11,7 @@ const hasLocal = !!src;
 <div class="video-card">
   {hasLocal ? (
     <div class="video-wrapper">
-      <video src={src} muted playsinline loop preload="metadata" class="auto-video"></video>
+      <video src={src} muted playsinline loop preload="none" class="auto-video"></video>
       <button class="sound-btn" aria-label="Zapnout zvuk">🔇</button>
     </div>
   ) : fbLink ? (
